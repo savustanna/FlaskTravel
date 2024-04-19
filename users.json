@@ -1,0 +1,10 @@
+[
+    {
+      "login": "savustana",
+      "password": "123456"
+    },
+  {
+      "login": "flask",
+      "password": "111"
+  }
+]

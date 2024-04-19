@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% set from = departures[departure] %}
+{% set sorted_by_price = tours.values()|sort(attribute="price") %}
+
+{% set sorted_by_nights = tours.values()|sort(attribute="nights") %}
+
+{% block main%}
+<main class="container mt-3">
+    <h1 class="display-5 mt-4">Start {{from}}</h1>
+    <p class="mb-4">Found {{tours|length}} tours from
+        {{(sorted_by_price|first).price}} $ to
+        {{(sorted_by_price||last).price}} $</p>
+
+    {% for inf in tours %}
+
+      <div class="col" style=" margin-left: 100px">
+        <div class="card" style="width: 18rem;">
+          <img src="{{inf['photo']}}" class="card-img-top" alt="...">
+          <div class="card-body" style="text-align: center">
+          <h5 class="card-title">{{ inf ['tour_name']}}</h5>
+            <p>Price: {{ inf['price']}}</p>
+          <p class="card-text">{{ inf['description']}}</p>
+          <a href="{{url_for('tour', id=inf['id'])}}" class="btn btn-primary">Order</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</main>
+
+{% endblock main %}
